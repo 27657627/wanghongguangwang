@@ -704,3 +704,82 @@ setInterval(updateUptimeDisplay, 1000);
 
 
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>樱花飘落效果</title>
+    <style>
+        /* 花瓣基础样式 */
+        .petal {
+            position: fixed;
+            pointer-events: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 9999;
+            opacity: 0.7;
+        }
+        
+        /* 不同类型的樱花样式 */
+        .petal-type1 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"><path fill="%23ffb7c5" d="M12,2C9,7,4,9,4,14c0,5,6,8,8,8s8-3,8-8C20,9,15,7,12,2z"/></svg>');
+        }
+        
+        .petal-type2 {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"><path fill="%23ff9eb5" d="M12,3C8,8,3,10,3,15c0,4,5,7,9,7s9-3,9-7C21,10,16,8,12,3z"/></svg>');
+        }
+    </style>
+</head>
+<body>
+    <!-- 你的网站内容放在这里 -->
+    <script>
+        // ====== 樱花生成核心代码 ======
+        document.addEventListener('DOMContentLoaded',  () => {
+            const petalContainer = document.createElement('div'); 
+            document.body.appendChild(petalContainer); 
+            
+            // 创建花瓣 
+            function createPetal() {
+                const petal = document.createElement('div'); 
+                petal.className  = `petal petal-type${Math.floor(Math.random()  * 2) + 1}`;
+                
+                // 随机属性设置 
+                const size = 15 + Math.random()  * 25;
+                petal.style.width  = `${size}px`;
+                petal.style.height  = `${size}px`;
+                petal.style.left  = `${Math.random()  * window.innerWidth}px`; 
+                petal.style.top  = `-${size}px`;
+                petal.style.opacity  = 0.3 + Math.random()  * 0.7;
+                petal.style.transform  = `rotate(${Math.random()  * 360}deg)`;
+                
+                // 动画参数
+                const duration = 10 + Math.random()  * 20;
+                const sway = 50 + Math.random()  * 100;
+                const swayDirection = Math.random()  > 0.5 ? 1 : -1;
+                
+                // 应用动画 
+                petal.animate([ 
+                    { 
+                        transform: `translate(0, 0) rotate(0deg)`,
+                        opacity: petal.style.opacity 
+                    },
+                    { 
+                        transform: `translate(${sway * swayDirection}px, ${window.innerHeight}px)  rotate(360deg)`,
+                        opacity: 0 
+                    }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                });
+                
+                petalContainer.appendChild(petal); 
+                
+                // 动画结束后移除元素 
+                setTimeout(() => petal.remove(),  duration * 1000);
+            }
+            
+            // 控制花瓣生成频率（每秒2-5片）
+            setInterval(createPetal, 300);
+        });
+    </script>
+</body>
+</html>
