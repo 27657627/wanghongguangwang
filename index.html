@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网红之家 - 专业抖音短视频上热门黑科技APP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"  rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff0050;
+            --secondary: #00f2ea;
+            --dark: #121212;
+            --light: #ffffff;
+            --gray: #f5f5f5;
+            --text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部导航 */
+        header {
+            background-color: rgba(0, 0, 0, 0.85);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 8px;
+            font-size: 28px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero 区域 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3')  no-repeat center center/cover;
+            padding-top: 70px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 10px 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 0, 80, 0.3);
+        }
+        
+        /* 服务部分 */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .service-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        /* 案例展示 */
+        .portfolio {
+            background-color: rgba(10, 10, 10, 0.95);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            background-color: #222;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* 优势部分 */
+        .advantages {
+            text-align: center;
+        }
+        
+        .advantage-item {
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        
+        .advantage-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        /* 联系表单 */
+        .contact {
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3')  no-repeat center center/cover;
+        }
+        
+        .contact-form {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea.form-control  {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: #000;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: transform 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: #aaa;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: rgba(0, 0, 0, 0.9);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.4s ease-in-out;
+            }
+            
+            .nav-links.active  {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fab fa-tiktok"></i>
+                    <span>网红之家</span>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#services">服务</a></li>
+                    <li><a href="#portfolio">案例</a></li>
+                    <li><a href="#advantages">优势</a></li>
+                    <li><a href="#contact">联系</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+ 
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1> 让您的抖音 快手 视频号 小红书账号
+快速增长变现</h1>
+            <p>帮助企业打造爆款各大短视频账号，提升品牌影响力，实现流量转化</p>
+            <div class="hero-buttons">
+                <a href="https://app.usxxc.top/" class="btn">APP下载</a>
+                <a href="http://tg.usxxc.top/" class="btn" style="background: transparent; border: 2px solid var(--primary);">点击进入</a>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- 服务内容 -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的服务</h2>
+                <p>全方位抖音运营解决方案</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>短视频策划与制作</h3>
+                    <p>专业团队创意策划，高质量视频拍摄剪辑，打造爆款短视频内容</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>账号运营管理</h3>
+                    <p>日常内容发布、粉丝互动、数据分析，持续提升账号影响力</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>直播带货支持</h3>
+                    <p>直播策划、主播培训、现场执行，提升产品销量与转化率</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <h3>抖音广告投放</h3>
+                    <p>DUO+投放 巨量引擎服务 精准广告投放策略，最大化广告效果，降低获客成本</p>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- 案例展示 -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>成功案例</h2>
+                <p>我们帮助客户实现增长</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-4.0.3"  alt="美妆品牌案例">
+                    <div class="portfolio-overlay">
+                        <h3>美妆品牌账号运营</h3>
+                        <p>3个月粉丝增长20万+，月销售额提升150%</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-4.0.3"  alt="餐饮行业案例">
+                    <div class="portfolio-overlay">
+                        <h3>连锁餐饮推广</h3>
+                        <p>单条视频播放量500万+，门店客流量增长80%</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3"  alt="教育行业案例">
+                    <div class="portfolio-overlay">
+                        <h3>教育机构IP打造</h3>
+                        <p>打造专业IP账号，课程咨询量增长300%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- 核心优势 -->
+    <section id="advantages" class="advantages">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的优势</h2>
+                <p>选择网红之家的理由</p>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">1</div>
+                <h3>专业团队</h3>
+                <p>拥有5年以上短视频运营经验的专业团队，深谙抖音平台算法与用户喜好</p>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">2</div>
+                <h3>数据驱动</h3>
+                <p>基于数据分析的运营策略，实时调整优化，确保最佳效果</p>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">3</div>
+                <h3>内容创意</h3>
+                <p>创意团队持续产出高质量内容，保持账号活跃度与用户粘性</p>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-number">4</div>
+                <h3>效果保障</h3>
+                <p>效果导向的服务模式，提供详细数据报告，确保投入产出比</p>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- 联系表单 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>1亿+</h2>
+                <p>累计播放量</p>
+            </div>
+
+            <div class="section-title">
+                <h2>2000+</h2>
+                <p>合作客户</p>
+            </div>
+
+            <div class="section-title">
+                <h2>98%</h2>
+                <p>客户满意度</p>
+            </div>
+
+            </div>
+        </div>
+    </section>
+ 
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="font-size: 28px; justify-content: center; margin-bottom: 20px;">
+                <i class="fab fa-tiktok"></i>
+                <span>网红之家</span>
+            </div>
+            <p style="margin-bottom: 25px; max-width: 400px; margin-left: auto; margin-right: auto;">
+                专业全媒体+自媒体+抖音短视频代运营服务商，助力企业电商平台实现短视频营销增长 
+            </p>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-weixin"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-weibo"></i></a>
+                <a href="#" class="social-link"><i class="fas fa-phone"></i></a>
+            </div>
+
+
+
+ <!-- 在页面任意位置添加这个显示容器 -->
+<div id="uptime-display">网站已运行：计算中...</div>
+ 
+<script>
+// 设置网站的启动日期（请修改为你的网站实际上线时间）
+const startDate = new Date('2020-01-01T00:00:00');
+ 
+function calculateUptime() {
+    const now = new Date();
+    let years = now.getFullYear()  - startDate.getFullYear(); 
+    let months = now.getMonth()  - startDate.getMonth(); 
+    let days = now.getDate()  - startDate.getDate(); 
+    let hours = now.getHours()  - startDate.getHours(); 
+    let minutes = now.getMinutes()  - startDate.getMinutes(); 
+    let seconds = now.getSeconds()  - startDate.getSeconds(); 
+    
+    
+    // 处理负值（时间借位）
+    if (seconds < 0) {
+        seconds += 60;
+        minutes--;
+    }
+    if (minutes < 0) {
+        minutes += 60;
+        hours--;
+    }
+    if (hours < 0) {
+        hours += 24;
+        days--;
+    }
+    if (days < 0) {
+        // 获取上个月的天数
+        const prevMonth = new Date(now.getFullYear(),  now.getMonth(),  0);
+        days += prevMonth.getDate(); 
+        months--;
+    }
+    if (months < 0) {
+        months += 12;
+        years--;
+    }
+    
+    return { years, months, days, hours, minutes, seconds };
+}
+ 
+function updateUptimeDisplay() {
+    const uptime = calculateUptime();
+    document.getElementById('uptime-display').innerHTML  = 
+        `网站已运行：${uptime.years} 年 ${uptime.months} 个月 ${uptime.days} 天<br>
+        ${uptime.hours} 小时 ${uptime.minutes} 分钟 ${uptime.seconds} 秒`;
+}
+ 
+// 初始更新
+updateUptimeDisplay();
+ 
+// 每秒更新一次
+setInterval(updateUptimeDisplay, 1000);
+</script>
+
+
+            <div class="copyright">
+                <p>© 2025 网红之家 版权所有</p>
+                <p>专业抖音短视频代运营服务</p>
+            </div>
+        </div>
+    </footer>
+ 
+    <script>
+        // 移动端菜单切换
+        const mobileToggle = document.getElementById('mobileToggle'); 
+        const navLinks = document.getElementById('navLinks'); 
+        
+        mobileToggle.addEventListener('click',  () => {
+            navLinks.classList.toggle('active'); 
+        });
+        
+        // 平滑滚动 
+        document.querySelectorAll('a[href^="#"]').forEach(anchor  => {
+            anchor.addEventListener('click',  function(e) {
+                e.preventDefault(); 
+                
+                navLinks.classList.remove('active'); 
+                
+                const targetId = this.getAttribute('href'); 
+                const targetElement = document.querySelector(targetId); 
+                
+                window.scrollTo({ 
+                    top: targetElement.offsetTop  - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // 表单提交 
+        const contactForm = document.getElementById('contactForm'); 
+        contactForm.addEventListener('submit',  function(e) {
+            e.preventDefault(); 
+            
+            // 这里可以添加表单提交逻辑 
+            alert('感谢您的咨询！我们将尽快与您联系。');
+            contactForm.reset(); 
+        });
+        
+        // 滚动效果 
+        window.addEventListener('scroll',  function() {
+            const header = document.querySelector('header'); 
+            if (window.scrollY  > 50) {
+                header.style.boxShadow  = '0 5px 20px rgba(0, 0, 0, 0.5)';
+            } else {
+                header.style.boxShadow  = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
